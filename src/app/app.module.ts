@@ -12,7 +12,6 @@ import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
-import { ProductItemComponent } from './product-item/product-item.component';
 import { ProductService } from './product.service';
 
 @NgModule({
@@ -21,8 +20,7 @@ import { ProductService } from './product.service';
     HeaderComponent,
     HomeComponent,
     ProductListComponent,
-    ProductDetailsComponent,
-    ProductItemComponent
+    ProductDetailsComponent
   ],
   imports: [
     BrowserModule,

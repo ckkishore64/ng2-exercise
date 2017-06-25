@@ -28,7 +28,6 @@ export class ProductListComponent implements OnInit {
 
   goToDetail(product: Product): void {
     this.selectedProduct = product;
-    console.log(this.selectedProduct);
   }
 
 }

@@ -3,7 +3,7 @@
 }
 
 #product-list img {
-  width: 100%;
+  max-width: 100%;
 }
 
 #product-list .card-link {

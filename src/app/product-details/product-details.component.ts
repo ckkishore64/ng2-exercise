@@ -1,4 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { Product } from '../product';
 
 @Component({
@@ -8,10 +10,10 @@ import { Product } from '../product';
 })
 export class ProductDetailsComponent {
   @Input() product: Product;
+  @Output() goToDetail = new EventEmitter();
+  constructor(private router: Router) { }
 
-  constructor() { }
-
-  ngOnInit() {
+  goBack(): void {
+    this.goToDetail.emit();
   }
-
 }
