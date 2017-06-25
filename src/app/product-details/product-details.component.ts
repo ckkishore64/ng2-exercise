@@ -13,7 +13,7 @@ import { ProductService } from '../product.service';
   providers: [{ provide: 'Window', useValue: window }]
 })
 export class ProductDetailsComponent implements OnInit {
-  private product: Product;
+  product: Product;
 
   constructor(
     private router: Router,

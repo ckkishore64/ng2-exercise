@@ -9,8 +9,8 @@ import { Product } from '../product';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  private title: string;
-  private categoryList: string[];
+  title: string;
+  categoryList: string[];
   constructor(private productService: ProductService) { }
 
   ngOnInit() {
