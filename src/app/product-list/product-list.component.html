@@ -1,3 +1,20 @@
-<p>
-  product-list works!
-</p>
+<div class="container" id="product-list" *ngIf="!selectedProduct">
+  <div class="row">
+    <div class="col-lg-4 col-sm-6 product align-items-stretch" *ngFor="let product of products">
+      <div class="card h-100">
+        <img [src]="product.imageHref" alt="Product Image" class="card-img-top">
+        <div class="card-block">
+          <h4 class="card-title">{{product.title}}</h4>
+          <p class="card-text">{{product.description}}</p>
+          <a [href]="product.url" class="card-link" target="_blank">{{product.url}}</a>
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-outline-info" (click)="goToDetail(product)">Go to details</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="selectedProduct">
+  <app-product-details [product]="selectedProduct"></app-product-details>
+</div>

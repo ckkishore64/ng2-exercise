@@ -7,7 +7,7 @@ import { Product } from './product';
 
 @Injectable()
 export class ProductService {
-  private url = 'https://www.dropbox.com/s/nlpz9o8o5e1t602/Data.json?dl=0';
+  private url = 'api/products';
 
   constructor(private http: Http) { }
 
@@ -16,6 +16,31 @@ export class ProductService {
               .toPromise()
               .then(res => res.json().data as ProductList)
               .catch(this.handleError)
+  }
+
+  getTitle(): Promise<string> {
+    return this.getData().then(productList => productList.title);
+  }
+
+  getDescription(): Promise<string> {
+    return this.getData().then(productList => productList.description);
+  }
+
+  getCategoryList(): Promise<string[]> {
+    return this.getData().then(productList => {
+      return productList.rows.reduce((categoryList, product) => {
+        if(!categoryList.includes(product.category)) {
+          categoryList.push(product.category);
+        }
+        return categoryList;
+      },[]);
+    });
+  }
+
+  getProducts(category: string): Promise<Product[]> {
+    return this.getData().then(productList => {
+      return productList.rows.filter((product) => product.category === category);
+    });
   }
 
   private handleError(error: any): Promise<any> {

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ProductService } from '../product.service';
+import { ProductList } from '../product-list';
+import { Product } from '../product';
 
 @Component({
   selector: 'app-header',
@@ -6,10 +9,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
-  constructor() { }
+  private title: string;
+  private categoryList: string[];
+  constructor(private productService: ProductService) { }
 
   ngOnInit() {
+    this.productService.getTitle().then(title => {
+      this.title = title
+    });
+    this.productService.getCategoryList().then(categoryList => this.categoryList = categoryList);
   }
 
 }
