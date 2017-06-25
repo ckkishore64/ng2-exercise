@@ -30,4 +30,8 @@ export class ProductListComponent implements OnInit {
     this.selectedProduct = product;
   }
 
+  hideImageCard(event: any): void {
+    event.target.parentElement.hidden = true;
+  }
+
 }

@@ -1,9 +1,10 @@
 <div class="container" id="product-list" *ngIf="!selectedProduct">
   <div class="row">
-    <div class="col-lg-4 col-sm-6 product align-items-stretch" *ngFor="let product of products">
+    <div class="col-lg-4 col-sm-6 product align-items-stretch"
+         *ngFor="let product of products">
       <div class="card h-100">
         <h4 class="card-header">{{product.title}}</h4>
-        <img [src]="product.imageHref" alt="Product Image" class="card-img-top">
+        <img [src]="product.imageHref" alt="Product Image" class="card-img-top" (error)="hideImageCard($event)"/>
         <div class="card-block">
           <p class="card-text">{{product.description}}</p>
           <a [href]="product.url" class="card-link" target="_blank">{{product.url}}</a>
