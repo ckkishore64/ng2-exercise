@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import 'rxjs/add/operator/switchMap';
 
@@ -17,7 +17,8 @@ export class ProductListComponent implements OnInit {
 
   constructor(
     private productService: ProductService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -26,8 +27,8 @@ export class ProductListComponent implements OnInit {
       .subscribe(products => this.products = products);
   }
 
-  goToDetail(product: Product): void {
-    this.selectedProduct = product;
+  goToDetail(index: number, product: Product): void {
+    this.router.navigate(['category', product.category, index])
   }
 
   hideImageCard(event: any): void {

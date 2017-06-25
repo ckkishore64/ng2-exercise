@@ -15,6 +15,10 @@ const routes: Routes = [
     component: ProductListComponent
   },
   {
+    path: 'category/:category/:id',
+    component: ProductDetailsComponent
+  },
+  {
     path: '',
     redirectTo: '/home',
     pathMatch: 'full'

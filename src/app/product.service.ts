@@ -43,6 +43,10 @@ export class ProductService {
     });
   }
 
+  getProduct(category: string, index: number): Promise<Product> {
+    return this.getProducts(category).then(products => products[index]);
+  }
+
   private handleError(error: any): Promise<any> {
     console.error('An error occured', error);
     return Promise.reject(error.message || error);

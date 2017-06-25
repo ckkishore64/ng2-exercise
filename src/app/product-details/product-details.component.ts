@@ -1,9 +1,10 @@
-import { Component, Input, Output, EventEmitter, Inject } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit, Inject } from '@angular/core';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import * as jsPDF from 'jspdf';
 import * as html2canvas from 'html2canvas';
 
 import { Product } from '../product';
+import { ProductService } from '../product.service';
 
 @Component({
   selector: 'app-product-details',
@@ -11,16 +12,24 @@ import { Product } from '../product';
   styleUrls: ['./product-details.component.css'],
   providers: [{ provide: 'Window', useValue: window }]
 })
-export class ProductDetailsComponent {
-  @Input() product: Product;
-  @Output() goToDetail = new EventEmitter();
+export class ProductDetailsComponent implements OnInit {
+  private product: Product;
+
   constructor(
     private router: Router,
+    private route: ActivatedRoute,
+    private productService: ProductService,
     @Inject('Window') private window: Window
   ) { }
 
+  ngOnInit(): void {
+    this.route.params
+      .switchMap((params: Params) => this.productService.getProduct(params['category'], params['id']))
+      .subscribe(product => this.product = product);
+  }
+
   goBack(): void {
-    this.goToDetail.emit();
+    this.router.navigate(['category', this.product.category])
   }
 
   saveAsPdf(): void {
