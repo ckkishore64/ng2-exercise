@@ -3,7 +3,7 @@
     <div class="col-md-4 hidden-md-down align-self-center">
       <img [src]="product.imageHref" alt="Product Image" />
     </div>
-    <div class="col col-md-6 offset-md-2">
+    <div class="col col-md-6 offset-md-2" id="product-pdf">
       <p class="lead">{{product.title}}</p>
       <p class="text-muted">{{product.description}}</p>
       <p><a [href]="product.url">{{product.url}}</a></p>
@@ -12,7 +12,7 @@
           <button class="btn btn-outline-info" (click)="goBack()">Back</button>
         </div>
         <div class="col-6 text-center">
-          <button class="btn btn-outline-info">Save as PDF</button>
+          <button class="btn btn-outline-info" (click)="saveAsPdf()">Save as PDF</button>
         </div>
       </div>
     </div>
